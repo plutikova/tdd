@@ -9,8 +9,8 @@ class Auth:
 
         self._users = []
 
-        with open(self._filename, 'r') as f:
-            for line in f:
+        with open(self._filename, 'r') as file_auth:
+            for line in file_auth:
                 name, pw_hash = line.split(',')
                 self._users.append((name, pw_hash))
 
@@ -33,13 +33,13 @@ class Auth:
             return False
 
     def add_user(self, name: str, password: str):
-        pw = hashlib.md5(password.encode()).hexdigest()
-        line = ','.join([name, pw])
+        pass_user = hashlib.md5(password.encode()).hexdigest()
+        line = ','.join([name, pass_user])
 
-        with open(self._filename, 'a') as f:
-            f.write('\n' + line)
+        with open(self._filename, 'a') as file_auth:
+            file_auth.write('\n' + line)
 
-        self._users.append((name, pw))
+        self._users.append((name, pass_user))
     
     def delete_user(self, name: str, password: str):
         for item in self._users:
