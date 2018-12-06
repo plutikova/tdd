@@ -1,8 +1,8 @@
-import hashlib
+import hashlib #import library for hashing
 from typing import Optional, Tuple
 
 
-class Auth:
+class Auth: #class describing the user authorization
     def __init__(self, filename: str):
         self._filename = filename
         self._is_users_changed = False
@@ -28,11 +28,11 @@ class Auth:
         if user is not None:
             (username, pw_hash) = user
             _hash = hashlib.md5(password.encode()).hexdigest()
-            return username == name and pw_hash == _hash 
+            return username == name and pw_hash == _hash
         else:
             return False
 
-    def add_user(self, name: str, password: str):
+    def add_user(self, name: str, password: str): #adding a user
         pass_user = hashlib.md5(password.encode()).hexdigest()
         line = ','.join([name, pass_user])
 
@@ -41,7 +41,7 @@ class Auth:
 
         self._users.append((name, pass_user))
     
-    def delete_user(self, name: str, password: str):
+    def delete_user(self, name: str, password: str):#delete a user
         for item in self._users:
             (username, _) = item
 
