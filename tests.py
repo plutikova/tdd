@@ -42,6 +42,10 @@ class TestAuth(unittest.TestCase):
         self.assertTrue(result)
         self.assertEqual(self.auth.users_amount, 2)
     
-
+    def test_delete_user(self):
+        self.auth.delete_user(name='admin', password='0000')
+        self.assertFalse(self.auth.has_user('admin'))
+        self.assertEqual(self.auth.users_amount, 0)
+        
 if __name__ == '__main__':
     unittest.main()

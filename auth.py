@@ -41,7 +41,13 @@ class Auth:
 
         self._users.append((name, pw))
     
+    def delete_user(self, name: str, password: str):
+        for item in self._users:
+            (username, _) = item
 
+            if username == name:
+                self._users.remove(item)
+                break
 
     def _get_user(self, username: str) -> Optional[Tuple[str, str]]:
         for (name, pw_hash) in self._users:
